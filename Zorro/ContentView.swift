@@ -10,7 +10,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            List {
+                NavigationLink(destination: MaskedTextField(.customText, addCustomTextProps)) {
+                    Text("Show Custom Text Field")
+                }
+                NavigationLink(destination: MaskedTextField(.creditCard(.visa))) {
+                    Text("Show Credit Card Text Field")
+                }
+                NavigationLink(destination: MaskedTextField(.phoneNumber)) {
+                    Text("Show Phone Number Text Field")
+                }
+            }
+            .navigationBarTitle("Text Field Options")
+        }
+    }
+    
+    func addCustomTextProps() -> CustomTextProperties {
+        var properties = CustomTextProperties()
+        properties.numberAmt = 2
+        return properties
     }
 }
 
